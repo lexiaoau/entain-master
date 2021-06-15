@@ -1,7 +1,9 @@
 api/api
 racing/racing
+event/event
 .DS_STORE
 *.out
 .idea
 .vscode
+*.db
 
