@@ -7,16 +7,16 @@ import (
 )
 
 type SportEvent interface {
-	// ListRaces will return a collection of races.
+	// ListEvents will return a collection of events.
 	ListEvents(ctx context.Context, in *event.ListEventsRequest) (*event.ListEventsResponse, error)
 }
 
-// eventService implements the Racing interface.
+// eventService implements the event interface.
 type eventService struct {
 	eventsRepo db.EventsRepo
 }
 
-// NewRacingService instantiates and returns a new eventService.
+// NewEventService instantiates and returns a new eventService.
 func NewEventService(eventsRepo db.EventsRepo) SportEvent {
 	return &eventService{eventsRepo}
 }
