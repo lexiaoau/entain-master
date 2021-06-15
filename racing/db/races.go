@@ -91,6 +91,23 @@ func (r *racesRepo) applyFilter(query string, filter *racing.ListRacesRequestFil
 		query += " WHERE " + strings.Join(clauses, " AND ")
 	}
 
+	// if no sort by field received, sort by advertised_start_time
+	// ASC/DESC is not considered in this scenario
+	switch filter.SortBy {
+	case racing.SortByField_SORT_BY_FIELD_ID:
+		query += " ORDER BY id"
+	case racing.SortByField_SORT_BY_FIELD_MEETING_ID:
+		query += " ORDER BY meeting_id"
+	case racing.SortByField_SORT_BY_FIELD_NAME:
+		query += " ORDER BY name"
+	case racing.SortByField_SORT_BY_FIELD_NUMBER:
+		query += " ORDER BY number"
+	case racing.SortByField_SORT_BY_FIELD_VISIBLE:
+		query += " ORDER BY visible"
+	default:
+		query += " ORDER BY advertised_start_time"
+	}
+
 	return query, args
 }
 
