@@ -79,6 +79,14 @@ func (r *racesRepo) applyFilter(query string, filter *racing.ListRacesRequestFil
 		}
 	}
 
+	// if no visible status received, do nothing and return all races
+	switch filter.VisibleStatus {
+	case racing.RaceVisibleStatus_RACE_VISIBLE_STATUS_VISIBLE:
+		clauses = append(clauses, "visible = 1")
+	case racing.RaceVisibleStatus_RACE_VISIBLE_STATUS_INVISIBLE:
+		clauses = append(clauses, " visible = 0")
+	}
+
 	if len(clauses) != 0 {
 		query += " WHERE " + strings.Join(clauses, " AND ")
 	}
