@@ -24,6 +24,7 @@ message ListRacesResponse {
 // Filter for listing races.
 message ListRacesRequestFilter {
   repeated int64 meeting_ids = 1;
+  RaceVisibleStatus visible_status = 2;
 }
 
 /* Resources */
@@ -44,3 +45,9 @@ message Race {
   google.protobuf.Timestamp advertised_start_time = 6;
 }
 
+enum RaceVisibleStatus {
+  RACE_VISIBLE_STATUS_UNSPECIFIED = 0;
+  RACE_VISIBLE_STATUS_ALL = 1;
+  RACE_VISIBLE_STATUS_VISIBLE = 2;
+  RACE_VISIBLE_STATUS_INVISIBLE = 3;
+}
