@@ -29,6 +29,7 @@ message ListRacesResponse {
 message ListRacesRequestFilter {
   repeated int64 meeting_ids = 1;
   RaceVisibleStatus visible_status = 2;
+  SortByField sort_by = 3;
 }
 
 /* Resources */
@@ -54,4 +55,14 @@ enum RaceVisibleStatus {
   RACE_VISIBLE_STATUS_ALL = 1;
   RACE_VISIBLE_STATUS_VISIBLE = 2;
   RACE_VISIBLE_STATUS_INVISIBLE = 3;
+}
+
+enum SortByField {
+  SORT_BY_FIELD_UNSPECIFIED = 0;
+  SORT_BY_FIELD_ID = 1;
+  SORT_BY_FIELD_MEETING_ID = 2;
+  SORT_BY_FIELD_NAME = 3;
+  SORT_BY_FIELD_NUMBER = 4;
+  SORT_BY_FIELD_VISIBLE = 5;
+  SORT_BY_FIELD_TIME = 6;
 }
